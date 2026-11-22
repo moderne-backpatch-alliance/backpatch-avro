@@ -1,6 +1,6 @@
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 1.9.2.1-backpatch-00001
+release: 1.9.2.1-backpatch-00002
 baseline: v1.9.2+backpatch.baseline
 fixes:
   - cve: CVE-2024-47561
@@ -10,12 +10,20 @@ fixes:
     basis: adapted
     artifacts:
       - org.apache.avro:avro
-    note: New in this release; ported onto 1.9.2; fixed at 1.9.2.1-backpatch-00001 (backpatch-avro@de68dff..e3f6730).
+    note: Carried from 1.9.2.1-backpatch-00001; ported onto 1.9.2; fixed at 1.9.2.1-backpatch-00001 (backpatch-avro@de68dff..e3f6730).
+  - cve: CVE-2023-39410
+    upstream_fix_url: https://github.com/apache/avro/commit/e2e57aac2d03589c14a3298be95f78481d8b4d51
+    advisory_url: https://nvd.nist.gov/vuln/detail/CVE-2023-39410
+    patch_commit_url: https://github.com/moderne-backpatch-alliance/backpatch-avro/commit/5ce8fdd
+    basis: adapted
+    artifacts:
+      - org.apache.avro:avro
+    note: New in this release; ported onto 1.9.2; fixed at 1.9.2.1-backpatch-00002 (backpatch-avro@5ce8fdd).
 tests:
-  commit: e3f6730dc7077563064795f86fcdced98f8d855a
+  commit: 5ce8fdd3548955cce8751d9d428192d4f2eb0950
   command: mvn -B -T1 -f lang/java/pom.xml -pl avro -am -Dspotless.check.skip=true -Dmaven.test.failure.ignore=true clean test
   runtime: openjdk version 1.8.0_512 (Zulu 8.98.0.111, Linux aarch64, container azul/zulu-openjdk:8), Apache Maven 3.9.16
-  report: avro-1.9.2.1-backpatch-00001-tests.zip
-  report_sha256: ff9b5814d98c585286924ba5bfe7a58fbc556f5413402223e2877d026eb2deff
+  report: avro-1.9.2.1-backpatch-00002-tests.zip
+  report_sha256: f8cb382c65704745e0a34e73246d18c711c8721e7b82fe8f9aa0a68c1534f224
   result: pass
-  note: 3189 tests at the patch commit, 1 of them skipped by the suite, 0 failed, 0 errors. The suite of record ran in a Linux arm64 container (azul/zulu-openjdk:8); on the Mac, tests that load the zstd and snappy native libraries fail for the platform, not for this change.
+  note: 3216 tests at the patch commit, 1 of them skipped by the suite, 0 failed, 0 errors.
